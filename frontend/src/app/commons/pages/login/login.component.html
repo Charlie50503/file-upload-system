@@ -1,10 +1,7 @@
-<div class="headerBar flex items-center">
-  <img src="assets/images/logo.png" />
-</div>
-<div class="pt-24">
+<div class="h-screen flex justify-center items-center">
   <form [formGroup]="loginFormGroup" autocomplete="off">
     <h1 class="" font="noto-medium" class="mb-4 text-3xl font-bold text-center">
-      系統名稱
+      file manager
     </h1>
     <ul class="list-none text-center">
       <li class="">
@@ -41,53 +38,12 @@
       </li>
     </ul>
     <div class="text-center">
-      <button mat-raised-button class="hover:opacity-80" color="primary" font="noto-regular" type="submit"
+      <button mat-fab class="hover:opacity-80" color="primary" font="noto-regular" type="submit"
         (click)="LoginUI(); (false)">
-        登入系統頁面
+        <mat-icon>
+          login
+        </mat-icon>
       </button>
     </div>
   </form>
 </div>
-
-<footer class="loginFooter">
-  <div class="flex flex-col lg:flex-row p-4 justify-center lg:px-0">
-    <div class="">
-      <span>
-        <a class="loginFooterText displayUnderLine" href="https://www.pscnet.com.tw/pscnetStock/index.do"
-          target="_blank">統一綜合證券股份有限公司</a>
-      </span>
-    </div>
-    <div class="px-2 hidden lg:block">
-      <span>|</span>
-    </div>
-    <div class="">
-      <span>110年金管證總字第0006號</span>
-    </div>
-
-    <div class="px-2 hidden lg:block">
-      <span>|</span>
-    </div>
-
-    <div class="">
-      <span>客服專線： (02) 8172-4668</span>
-    </div>
-
-    <div class="px-2 hidden lg:block">
-      <span>|</span>
-    </div>
-
-    <div class="">
-      <span>服務信箱：</span>
-      <span>
-        <a class="displayUnderLine loginFooterText"
-          href="mailto:info-center@uni-psg.com">info-center&#64;uni-psg.com</a>
-      </span>
-    </div>
-    <div class="px-2 hidden lg:block">
-      <span>|</span>
-    </div>
-    <div class="">
-      <span>© 2023 President Securities Corporation All Rights Reserved</span>
-    </div>
-  </div>
-</footer>

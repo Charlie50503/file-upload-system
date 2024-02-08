@@ -54,9 +54,9 @@ export class LoginComponent {
     private tokenService: TokenService,
     private route: ActivatedRoute,
   ) {
-    if (!this.route.snapshot.queryParams['isDisabledAutoLogin']) {
-      this.windowsLogin();
-    }
+    // if (!this.route.snapshot.queryParams['isDisabledAutoLogin']) {
+    //   this.windowsLogin();
+    // }
   }
 
   // 登入
@@ -76,13 +76,13 @@ export class LoginComponent {
       });
   }
   // windows登入
-  public windowsLogin() {
-    this.tokenService.removeAllAccessToken();
-    this.loginService.loginWindowsLogin$Json({}).subscribe({
-      next: (res) => this.handlingLoginSuccess(res),
-      error: (error: any) => this.handlingLoginFailed(error),
-    });
-  }
+  // public windowsLogin() {
+  //   this.tokenService.removeAllAccessToken();
+  //   this.loginService.loginWindowsLogin$Json({}).subscribe({
+  //     next: (res) => this.handlingLoginSuccess(res),
+  //     error: (error: any) => this.handlingLoginFailed(error),
+  //   });
+  // }
 
   private handlingLoginSuccess(res: UserInfo) {
     // 填入使用者資料

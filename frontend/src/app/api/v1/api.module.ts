@@ -4,8 +4,8 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
-import { ApiService } from './services/api.service';
 import { FileManagementService } from './services/file-management.service';
+import { ApiService } from './services/api.service';
 
 /**
  * Module that provides all services and configuration.
@@ -15,8 +15,8 @@ import { FileManagementService } from './services/file-management.service';
   exports: [],
   declarations: [],
   providers: [
-    ApiService,
     FileManagementService,
+    ApiService,
     ApiConfiguration
   ],
 })

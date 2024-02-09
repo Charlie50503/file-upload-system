@@ -7,11 +7,11 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface AppControllerGetHello$Params {
+export interface AuthControllerGetProfile$Params {
 }
 
-export function appControllerGetHello(http: HttpClient, rootUrl: string, params?: AppControllerGetHello$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, appControllerGetHello.PATH, 'get');
+export function authControllerGetProfile(http: HttpClient, rootUrl: string, params?: AuthControllerGetProfile$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, authControllerGetProfile.PATH, 'get');
   if (params) {
   }
 
@@ -25,4 +25,4 @@ export function appControllerGetHello(http: HttpClient, rootUrl: string, params?
   );
 }
 
-appControllerGetHello.PATH = '/';
+authControllerGetProfile.PATH = '/auth/profile';

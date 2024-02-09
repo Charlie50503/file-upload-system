@@ -11,16 +11,17 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ResponseDto } from 'src/common/dto/response.dto';
 import { MulterExceptionFilter } from 'src/common/filters/multer-exception.filter';
 import { FirebaseStorageService } from 'src/modules/file-management/firebase-storage.service';
 import { IFile } from './dto/file.dto';
-import { ApiGetFilesResponse } from '../swagger/file-management.decorator';
+import { ApiGetFilesResponse } from './swagger/file-management.decorator';
 import { Response } from 'express';
 
 @ApiTags('File Management') // swagger tag
 @Controller('file-management')
+@ApiBearerAuth('JWT-auth')
 export class FileManagementController {
   constructor(private firebaseStorage: FirebaseStorageService) {}
   @Post('file')

@@ -1,7 +1,7 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOkResponse, getSchemaPath, ApiExtraModels } from '@nestjs/swagger';
 import { ResponseDto } from 'src/common/dto/response.dto';
-import { IFile } from '../file-management/dto/file.dto';
+import { IFile } from '../dto/file.dto';
 
 export function ApiGetFilesResponse() {
   return applyDecorators(

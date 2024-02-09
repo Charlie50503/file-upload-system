@@ -4,11 +4,8 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
-import { CaseMService } from './services/case-m.service';
-import { LoginService } from './services/login.service';
-import { OrganizeService } from './services/organize.service';
-import { RegisterService } from './services/register.service';
-import { ScheduleService } from './services/schedule.service';
+import { ApiService } from './services/api.service';
+import { FileManagementService } from './services/file-management.service';
 
 /**
  * Module that provides all services and configuration.
@@ -18,11 +15,8 @@ import { ScheduleService } from './services/schedule.service';
   exports: [],
   declarations: [],
   providers: [
-    CaseMService,
-    LoginService,
-    OrganizeService,
-    RegisterService,
-    ScheduleService,
+    ApiService,
+    FileManagementService,
     ApiConfiguration
   ],
 })

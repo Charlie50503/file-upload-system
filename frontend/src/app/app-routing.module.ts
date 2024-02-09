@@ -19,11 +19,11 @@ const routes: Routes = [
       ),
     children: [
       {
-        path: 'overview',
-        loadChildren: () =>
-          import('./pages/overview/overview.module').then(
-            (m) => m.OverviewModule,
-          ),
+        path: 'file-management',
+        loadComponent: () =>
+          import(
+            'src/app/pages/file-management/file-management.component'
+          ).then((c) => c.FileManagementComponent),
       },
     ],
   },

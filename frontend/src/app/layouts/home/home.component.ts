@@ -44,9 +44,9 @@ export class HomeComponent implements AfterViewInit {
   public environmentName = environment.name;
   public modulePageList: pageInterface[] = [
     {
-      pageName: '一般系統',
+      pageName: 'File Management',
       isShow: true,
-      route: '/main/SystemManagement/List',
+      route: '/home/file-management',
       type: 'link',
       children: [],
     },

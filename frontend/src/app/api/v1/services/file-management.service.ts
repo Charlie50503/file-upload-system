@@ -85,7 +85,7 @@ export class FileManagementService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  fileManagementControllerDownload$Response(params: FileManagementControllerDownload$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  fileManagementControllerDownload$Response(params: FileManagementControllerDownload$Params, context?: HttpContext): Observable<StrictHttpResponse<Blob>> {
     return fileManagementControllerDownload(this.http, this.rootUrl, params, context);
   }
 
@@ -95,9 +95,9 @@ export class FileManagementService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  fileManagementControllerDownload(params: FileManagementControllerDownload$Params, context?: HttpContext): Observable<void> {
+  fileManagementControllerDownload(params: FileManagementControllerDownload$Params, context?: HttpContext): Observable<Blob> {
     return this.fileManagementControllerDownload$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<Blob>): Blob => r.body)
     );
   }
 

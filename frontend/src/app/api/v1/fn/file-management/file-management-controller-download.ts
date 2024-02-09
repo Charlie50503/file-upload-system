@@ -11,18 +11,18 @@ export interface FileManagementControllerDownload$Params {
   fileName: string;
 }
 
-export function fileManagementControllerDownload(http: HttpClient, rootUrl: string, params: FileManagementControllerDownload$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function fileManagementControllerDownload(http: HttpClient, rootUrl: string, params: FileManagementControllerDownload$Params, context?: HttpContext): Observable<StrictHttpResponse<Blob>> {
   const rb = new RequestBuilder(rootUrl, fileManagementControllerDownload.PATH, 'get');
   if (params) {
     rb.path('fileName', params.fileName, {});
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: '*/*', context })
+    rb.build({ responseType: 'blob', accept: 'application/octet-stream', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      return r as StrictHttpResponse<Blob>;
     })
   );
 }

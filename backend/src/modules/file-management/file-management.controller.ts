@@ -11,7 +11,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ResponseDto } from 'src/common/dto/response.dto';
 import { MulterExceptionFilter } from 'src/common/filters/multer-exception.filter';
 import { FirebaseStorageService } from 'src/modules/file-management/firebase-storage.service';
@@ -43,10 +43,18 @@ export class FileManagementController {
     };
   }
   @Get('file/:fileName')
+  @ApiOkResponse({
+    description: 'Download file',
+    // type: Response,
+    content: {
+      'application/octet-stream': {
+        schema: { type: 'string', format: 'binary' },
+      },
+    },
+  })
   async download(@Param('fileName') fileName: string, @Res() res: Response) {
     try {
-      const { stream, contentType } =
-        await this.firebaseStorage.downloadFile(fileName);
+      const { stream } = await this.firebaseStorage.downloadFile(fileName);
       // 設置正確的Content-Type
       res.setHeader('Content-Type', 'application/octet-stream'); // 修改這裡
       res.setHeader(

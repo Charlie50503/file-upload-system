@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>確認</h2>
+<mat-dialog-content>
+  <p>{{ data.message }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="w-full flex justify-around mb-4">
+    <button mat-raised-button color="primary" (click)="submit()">確定</button>
+    <button
+      mat-raised-button
+      class="text-white bg-black bg-opacity-80"
+      [mat-dialog-close]="false"
+    >
+      關閉
+    </button>
+  </div>
+</mat-dialog-actions>

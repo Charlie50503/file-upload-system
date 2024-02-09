@@ -1,0 +1,51 @@
+{
+  "vscodeGitCommit.variables": {
+    "page": [
+      {
+        "label": "登入頁"
+      },
+      {
+        "label": "layout"
+      },
+      {
+        "label": "file-management"
+      },
+      {
+        "label": "angular.json"
+      },
+      {
+        "label": "專案"
+      },
+      {
+        "label": "vs code"
+      },
+      {
+        "label": "開發用套件"
+      },
+      {
+        "label": "共用方法"
+      },
+      {
+        "label": "共用 Service"
+      },
+      {
+        "label": "環境變量"
+      },
+      {
+        "label": "其他"
+      },
+      {
+        "label": "開發環境設定"
+      },
+      {
+        "label": "utils"
+      },
+      {
+        "label": "Interface"
+      },
+      {
+        "label": "types"
+      }
+    ],
+  },
+}

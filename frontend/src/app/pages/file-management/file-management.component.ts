@@ -1,36 +1,100 @@
-import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { Observable, filter, map, startWith, switchMap } from 'rxjs';
+import { IFile } from 'src/app/api/v1/models';
+import { FileManagementService } from 'src/app/api/v1/services';
+import { FileSizePipe } from 'src/app/core/pipes/file-size.pipe';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-file-management',
   templateUrl: './file-management.component.html',
   styleUrl: './file-management.component.scss',
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatTableModule,MatButtonModule,MatIconModule],
+  imports: [
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    FileSizePipe,
+    AsyncPipe,
+  ],
 })
-export class FileManagementComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'active'];
-  dataSource = ELEMENT_DATA;
+export class FileManagementComponent implements OnInit {
+  displayedColumns: string[] = [
+    'name',
+    'size',
+    'updatedDate',
+    'createdDate',
+    'active',
+  ];
+  dataSource: IFile[] = [];
+
+  constructor(
+    private fileManagementService: FileManagementService,
+    public dialog: MatDialog,
+  ) {}
+
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.fileManagementService
+      .fileManagementControllerGetFiles()
+      .pipe(map((res) => (res.data as IFile[])))
+      .subscribe((data) => {
+        this.dataSource = data;
+      });
+  }
+
+  downloadFile(element: IFile) {
+    this.fileManagementService
+      .fileManagementControllerDownload({
+        fileName: element.name,
+      })
+      .subscribe((data) => {
+        var blob = new Blob([data as any], { type: 'image/png' });
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = element.name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(downloadUrl);
+      });
+  }
+
+  deleteFile(element: IFile) {
+    return this.fileManagementService.fileManagementControllerDelete({
+      fileName: element.name,
+    });
+  }
+
+  openDeleteConfirmDialog(element: IFile): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { message: '確定刪除嗎?' },
+      panelClass: ['w-[240px]'],
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((res) => !!res),
+        switchMap(() => this.deleteFile(element)),
+      )
+      .subscribe((data) => {
+        this.fetchData();
+      });
+  }
 }

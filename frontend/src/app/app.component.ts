@@ -8,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor(private primarySpinnerService: PrimarySpinnerService) {}
-  isLoading$ = this.primarySpinnerService.isLoading$();
-  ngOnInit(): void {}
+  isLoading = false;
+  ngOnInit(): void {
+    this.primarySpinnerService.isLoading$().subscribe((isLoading) => {
+      setTimeout(() => {
+        this.isLoading = isLoading;
+      });
+    });
+  }
 }

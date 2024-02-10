@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { FileManagementService } from './services/file-management.service';
-import { ApiService } from './services/api.service';
+import { AuthService } from './services/auth.service';
+import { UsersService } from './services/users.service';
 
 /**
  * Module that provides all services and configuration.
@@ -16,7 +17,8 @@ import { ApiService } from './services/api.service';
   declarations: [],
   providers: [
     FileManagementService,
-    ApiService,
+    AuthService,
+    UsersService,
     ApiConfiguration
   ],
 })

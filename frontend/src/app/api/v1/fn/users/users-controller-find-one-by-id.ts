@@ -7,12 +7,14 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface AuthControllerGetProfile$Params {
+export interface UsersControllerFindOneById$Params {
+  id: string;
 }
 
-export function authControllerGetProfile(http: HttpClient, rootUrl: string, params?: AuthControllerGetProfile$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, authControllerGetProfile.PATH, 'get');
+export function usersControllerFindOneById(http: HttpClient, rootUrl: string, params: UsersControllerFindOneById$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, usersControllerFindOneById.PATH, 'get');
   if (params) {
+    rb.path('id', params.id, {});
   }
 
   return http.request(
@@ -25,4 +27,4 @@ export function authControllerGetProfile(http: HttpClient, rootUrl: string, para
   );
 }
 
-authControllerGetProfile.PATH = '/auth/profile';
+usersControllerFindOneById.PATH = '/users/findById/{id}';

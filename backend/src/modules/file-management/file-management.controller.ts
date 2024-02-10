@@ -68,14 +68,14 @@ export class FileManagementController {
     } catch (error) {
       if (error.message === 'File not found') {
         // throw new NotFoundException(error.message);
-        res.status(404).send({
+        return res.status(404).send({
           statusCode: 404,
           message: error.message,
           error: 'File not found',
         });
       }
       // throw error; // 或更具體的錯誤處理
-      res.status(500).send({
+      return res.status(500).send({
         statusCode: 500,
         message: error.message,
         error: 'Internal Server Error',

@@ -14,8 +14,7 @@ export function ApiSignUpResponse() {
           {
             properties: {
               data: {
-                type: 'object',
-                items: { $ref: getSchemaPath(SignUpResDto) },
+                $ref: getSchemaPath(SignInResDto),
               },
             },
           },
@@ -36,8 +35,7 @@ export function ApiSignInResponse() {
           {
             properties: {
               data: {
-                type: 'object',
-                items: { $ref: getSchemaPath(SignInResDto) },
+                $ref: getSchemaPath(SignInResDto),
               },
             },
           },

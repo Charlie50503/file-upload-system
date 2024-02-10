@@ -24,7 +24,7 @@ export class ErrorHandlerService {
           alertContent: customError.errorMessage,
         },
       });
-    } else if ('statusCode' in error.error) {
+    } else if ('error' in error.error) {
       const defaultError = error.error as ResponseError;
       this.dialogRef.open(AlertDialogComponent, {
         minWidth: '360px',

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
@@ -8,6 +8,7 @@ import { UsersModule } from './modules/users/users.module';
 import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
+import { MongooseModule } from '@nestjs/mongoose';
 import { CustomExceptionFilter } from './common/filters/custom-exception.filter';
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
     FileManagementModule,
     AuthModule,
     UsersModule,
+    MongooseModule.forRoot('mongodb://localhost:27017/file-management'),
   ],
   controllers: [AppController],
   providers: [
@@ -31,6 +33,10 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
+    },
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
     },
     {
       provide: APP_FILTER,

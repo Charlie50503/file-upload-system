@@ -8,6 +8,7 @@ export function ApiGetFilesResponse() {
     ApiExtraModels(ResponseDto, IFile),
     ApiOkResponse({
       description: 'A list of files',
+      isArray: true,
       schema: {
         allOf: [
           { $ref: getSchemaPath(ResponseDto) },

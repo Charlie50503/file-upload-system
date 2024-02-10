@@ -8,7 +8,7 @@
   </div>
   <div class="flex items-center">
     <p class="flex font-semibold text-xl mb-0 mr-4" *ngIf="userInfo">
-      {{ userInfo.branchName }}/{{ userInfo.chineseName }}
+      {{ userInfo.name }}
     </p>
     <button mat-icon-button class="logout" [routerLink]="['/login']">
       <mat-icon>logout</mat-icon>

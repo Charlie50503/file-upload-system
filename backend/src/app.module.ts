@@ -5,9 +5,10 @@ import { ConfigModule } from '@nestjs/config';
 import { FileManagementModule } from './modules/file-management/file-management.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
+import { CustomExceptionFilter } from './common/filters/custom-exception.filter';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -30,6 +31,10 @@ import { JwtModule } from '@nestjs/jwt';
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: CustomExceptionFilter,
     },
   ],
 })

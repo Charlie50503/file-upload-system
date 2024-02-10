@@ -8,14 +8,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { CreateUserDto } from '../../models/create-user-dto';
 import { ResponseDto } from '../../models/response-dto';
-import { SignUpResDto } from '../../models/sign-up-res-dto';
+import { SignInResDto } from '../../models/sign-in-res-dto';
 
 export interface AuthControllerSignUp$Params {
       body: CreateUserDto
 }
 
 export function authControllerSignUp(http: HttpClient, rootUrl: string, params: AuthControllerSignUp$Params, context?: HttpContext): Observable<StrictHttpResponse<ResponseDto & {
-'data'?: Array<SignUpResDto>;
+'data'?: SignInResDto;
 }>> {
   const rb = new RequestBuilder(rootUrl, authControllerSignUp.PATH, 'post');
   if (params) {
@@ -28,7 +28,7 @@ export function authControllerSignUp(http: HttpClient, rootUrl: string, params: 
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<ResponseDto & {
-      'data'?: Array<SignUpResDto>;
+      'data'?: SignInResDto;
       }>;
     })
   );

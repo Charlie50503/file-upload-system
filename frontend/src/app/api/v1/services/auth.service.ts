@@ -14,7 +14,7 @@ import { AuthControllerSignIn$Params } from '../fn/auth/auth-controller-sign-in'
 import { authControllerSignUp } from '../fn/auth/auth-controller-sign-up';
 import { AuthControllerSignUp$Params } from '../fn/auth/auth-controller-sign-up';
 import { ResponseDto } from '../models/response-dto';
-import { SignUpResDto } from '../models/sign-up-res-dto';
+import { SignInResDto } from '../models/sign-in-res-dto';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseService {
@@ -31,7 +31,9 @@ export class AuthService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  authControllerSignIn$Response(params: AuthControllerSignIn$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  authControllerSignIn$Response(params: AuthControllerSignIn$Params, context?: HttpContext): Observable<StrictHttpResponse<ResponseDto & {
+'data'?: SignInResDto;
+}>> {
     return authControllerSignIn(this.http, this.rootUrl, params, context);
   }
 
@@ -41,9 +43,15 @@ export class AuthService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  authControllerSignIn(params: AuthControllerSignIn$Params, context?: HttpContext): Observable<void> {
+  authControllerSignIn(params: AuthControllerSignIn$Params, context?: HttpContext): Observable<ResponseDto & {
+'data'?: SignInResDto;
+}> {
     return this.authControllerSignIn$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<ResponseDto & {
+'data'?: SignInResDto;
+}>): ResponseDto & {
+'data'?: SignInResDto;
+} => r.body)
     );
   }
 
@@ -57,7 +65,7 @@ export class AuthService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authControllerSignUp$Response(params: AuthControllerSignUp$Params, context?: HttpContext): Observable<StrictHttpResponse<ResponseDto & {
-'data'?: Array<SignUpResDto>;
+'data'?: SignInResDto;
 }>> {
     return authControllerSignUp(this.http, this.rootUrl, params, context);
   }
@@ -69,13 +77,13 @@ export class AuthService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   authControllerSignUp(params: AuthControllerSignUp$Params, context?: HttpContext): Observable<ResponseDto & {
-'data'?: Array<SignUpResDto>;
+'data'?: SignInResDto;
 }> {
     return this.authControllerSignUp$Response(params, context).pipe(
       map((r: StrictHttpResponse<ResponseDto & {
-'data'?: Array<SignUpResDto>;
+'data'?: SignInResDto;
 }>): ResponseDto & {
-'data'?: Array<SignUpResDto>;
+'data'?: SignInResDto;
 } => r.body)
     );
   }

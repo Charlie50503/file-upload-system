@@ -6,24 +6,30 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { ResponseDto } from '../../models/response-dto';
 import { SignInDto } from '../../models/sign-in-dto';
+import { SignInResDto } from '../../models/sign-in-res-dto';
 
 export interface AuthControllerSignIn$Params {
       body: SignInDto
 }
 
-export function authControllerSignIn(http: HttpClient, rootUrl: string, params: AuthControllerSignIn$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function authControllerSignIn(http: HttpClient, rootUrl: string, params: AuthControllerSignIn$Params, context?: HttpContext): Observable<StrictHttpResponse<ResponseDto & {
+'data'?: SignInResDto;
+}>> {
   const rb = new RequestBuilder(rootUrl, authControllerSignIn.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/json');
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: '*/*', context })
+    rb.build({ responseType: 'json', accept: 'application/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      return r as StrictHttpResponse<ResponseDto & {
+      'data'?: SignInResDto;
+      }>;
     })
   );
 }

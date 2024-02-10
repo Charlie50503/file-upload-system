@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface SignUpResDto {
+export interface SignInResDto {
   '_id': string;
   createdAt: string;
   email: string;

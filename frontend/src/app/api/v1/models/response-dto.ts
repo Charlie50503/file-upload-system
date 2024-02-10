@@ -5,8 +5,8 @@ export interface ResponseDto {
   /**
    * 資料
    */
-  data: Array<{
-}>;
+  data: {
+};
 
   /**
    * 錯誤訊息

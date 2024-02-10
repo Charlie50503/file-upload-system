@@ -25,4 +25,11 @@ export class UsersService {
     const user = await this.userModel.findById(id).select('-password');
     return user;
   }
+
+  public async findOneByEmailIncludePassword(
+    email: string,
+  ): Promise<UserDocument | undefined> {
+    const user = await this.userModel.findOne({ email });
+    return user;
+  }
 }

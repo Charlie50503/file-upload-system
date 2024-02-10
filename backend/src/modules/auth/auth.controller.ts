@@ -5,7 +5,7 @@ import { ApiBadRequestResponse, ApiTags } from '@nestjs/swagger';
 import { ResponseDto } from 'src/common/dto/response.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { CustomExceptionDto } from 'src/common/dto/custom-exception.dto';
-import { ApiSignUpResponse } from './swagger/auth.decorator';
+import { ApiSignInResponse, ApiSignUpResponse } from './swagger/auth.decorator';
 import { SignUpResDto } from './dto/sign-up.res.dto';
 import { SignInDto } from './dto/sign-in.dto';
 import { SignInResDto } from './dto/sign-in.res.dto';
@@ -21,6 +21,7 @@ export class AuthController {
   })
   @Public()
   @Post('login')
+  @ApiSignInResponse()
   public async signIn(
     @Body() signInDto: SignInDto,
   ): Promise<ResponseDto<SignInResDto>> {

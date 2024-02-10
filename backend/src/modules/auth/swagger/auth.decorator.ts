@@ -2,6 +2,7 @@ import { applyDecorators } from '@nestjs/common';
 import { ApiOkResponse, getSchemaPath, ApiExtraModels } from '@nestjs/swagger';
 import { ResponseDto } from 'src/common/dto/response.dto';
 import { SignUpResDto } from '../dto/sign-up.res.dto';
+import { SignInResDto } from '../dto/sign-in.res.dto';
 export function ApiSignUpResponse() {
   return applyDecorators(
     ApiExtraModels(ResponseDto, SignUpResDto),
@@ -26,7 +27,7 @@ export function ApiSignUpResponse() {
 
 export function ApiSignInResponse() {
   return applyDecorators(
-    ApiExtraModels(ResponseDto, SignUpResDto),
+    ApiExtraModels(ResponseDto, SignInResDto),
     ApiOkResponse({
       description: '登入成功 response data',
       schema: {
@@ -36,7 +37,7 @@ export function ApiSignInResponse() {
             properties: {
               data: {
                 type: 'object',
-                items: { $ref: getSchemaPath(SignUpResDto) },
+                items: { $ref: getSchemaPath(SignInResDto) },
               },
             },
           },

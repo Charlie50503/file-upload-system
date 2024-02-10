@@ -6,11 +6,11 @@
     <ul class="list-none text-center">
       <li class="">
         <mat-form-field class="w-80">
-          <mat-label font="noto-medium">帳號</mat-label>
-          <input formControlName="userAccount" matInput />
+          <mat-label font="noto-medium">Email</mat-label>
+          <input formControlName="email" matInput />
           <mat-error>
             <ng-container *ngIf="
-                loginFormGroup.controls['userAccount'].hasError('required')
+                loginFormGroup.controls['email'].hasError('required')
               ">
               該欄位必填
             </ng-container>
@@ -29,7 +29,7 @@
           </button>
           <mat-error>
             <ng-container *ngIf="
-                loginFormGroup.controls['userAccount'].hasError('required')
+                loginFormGroup.controls['password'].hasError('required')
               ">
               該欄位必填
             </ng-container>

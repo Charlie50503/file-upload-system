@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
-import { UserInfo } from 'src/app/api/v1/models';
+import { SignInResDto } from 'src/app/api/v1/models';
 
 export interface LoginPage {
   isShowITDepPage?: boolean;
@@ -13,14 +12,14 @@ export interface LoginPage {
   providedIn: 'root',
 })
 export class UserService {
-  private _userInfo!: UserInfo;
+  private _user!: SignInResDto;
 
   constructor(public dialog: MatDialog) {}
 
-  public setUserInfo(userInfo: UserInfo) {
-    this._userInfo = userInfo;
+  public setUserInfo(user: SignInResDto) {
+    this._user = user;
   }
   public getUserInfo() {
-    return this._userInfo;
+    return this._user;
   }
 }

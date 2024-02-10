@@ -14,9 +14,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../../../core/services/user.service';
 import { TokenService } from '../../../core/services/token.service';
-import { LoginService } from 'src/app/api/v1/services';
 import { AlertDialogComponent } from 'src/app/commons/shared/alert-dialog/alert-dialog.component';
-import { UserInfo } from 'src/app/api/v1/models';
+import { AuthService } from 'src/app/api/v1/services';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,7 +35,7 @@ export class LoginComponent {
   public isLoginPasswordHide = true;
 
   public loginFormGroup = new FormGroup({
-    userAccount: new FormControl('', {
+    email: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required],
     }),
@@ -47,12 +46,13 @@ export class LoginComponent {
   });
 
   constructor(
-    private loginService: LoginService,
+    // private loginService: LoginService,
     private router: Router,
     public dialogRef: MatDialog,
     private userService: UserService,
     private tokenService: TokenService,
     private route: ActivatedRoute,
+    private authService: AuthService,
   ) {
     // if (!this.route.snapshot.queryParams['isDisabledAutoLogin']) {
     //   this.windowsLogin();
@@ -66,14 +66,26 @@ export class LoginComponent {
       return;
     }
 
-    this.loginService
-      .loginAuthorizeUser$Json({
+    this.authService
+      .authControllerSignIn({
         body: this.loginFormGroup.getRawValue(),
       })
       .subscribe({
-        next: (res) => this.handlingLoginSuccess(res),
-        error: (error: any) => this.handlingLoginFailed(error),
+        next: (res) => {
+          this.userService.setUserInfo(res.data);
+          this.tokenService.getAccessToken().setToken(res.data.token!);
+          this.router.navigate(['/home/file-management']);
+        },
       });
+
+    // this.loginService
+    //   .loginAuthorizeUser$Json({
+    //     body: this.loginFormGroup.getRawValue(),
+    //   })
+    //   .subscribe({
+    //     next: (res) => this.handlingLoginSuccess(res),
+    //     error: (error: any) => this.handlingLoginFailed(error),
+    //   });
   }
   // windows登入
   // public windowsLogin() {
@@ -84,14 +96,14 @@ export class LoginComponent {
   //   });
   // }
 
-  private handlingLoginSuccess(res: UserInfo) {
-    // 填入使用者資料
-    this.userService.setUserInfo(res);
-    // 設定token
-    this.tokenService.getAccessToken().setToken(res.jwtToken!);
-    // 跳轉頁面
-    this.router.navigate(['/home/overview']);
-  }
+  // private handlingLoginSuccess(res: UserInfo) {
+  //   // 填入使用者資料
+  //   // this.userService.setUserInfo(res);
+  //   // 設定token
+  //   this.tokenService.getAccessToken().setToken(res.jwtToken!);
+  //   // 跳轉頁面
+  //   this.router.navigate(['/home/overview']);
+  // }
 
   private handlingLoginFailed(error: any) {
     console.log(error);

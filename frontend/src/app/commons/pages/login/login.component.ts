@@ -14,8 +14,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../../../core/services/user.service';
 import { TokenService } from '../../../core/services/token.service';
-import { AlertDialogComponent } from 'src/app/commons/shared/alert-dialog/alert-dialog.component';
 import { AuthService } from 'src/app/api/v1/services';
+import { ErrorHandlerService } from 'src/app/core/services/error-handler.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -46,18 +46,14 @@ export class LoginComponent {
   });
 
   constructor(
-    // private loginService: LoginService,
     private router: Router,
     public dialogRef: MatDialog,
     private userService: UserService,
     private tokenService: TokenService,
     private route: ActivatedRoute,
     private authService: AuthService,
-  ) {
-    // if (!this.route.snapshot.queryParams['isDisabledAutoLogin']) {
-    //   this.windowsLogin();
-    // }
-  }
+    private errorHandlerService: ErrorHandlerService,
+  ) {}
 
   // 登入
   public LoginUI() {
@@ -76,47 +72,7 @@ export class LoginComponent {
           this.tokenService.getAccessToken().setToken(res.data.token!);
           this.router.navigate(['/home/file-management']);
         },
+        error: this.errorHandlerService.handleRequestError.bind(this),
       });
-
-    // this.loginService
-    //   .loginAuthorizeUser$Json({
-    //     body: this.loginFormGroup.getRawValue(),
-    //   })
-    //   .subscribe({
-    //     next: (res) => this.handlingLoginSuccess(res),
-    //     error: (error: any) => this.handlingLoginFailed(error),
-    //   });
-  }
-  // windows登入
-  // public windowsLogin() {
-  //   this.tokenService.removeAllAccessToken();
-  //   this.loginService.loginWindowsLogin$Json({}).subscribe({
-  //     next: (res) => this.handlingLoginSuccess(res),
-  //     error: (error: any) => this.handlingLoginFailed(error),
-  //   });
-  // }
-
-  // private handlingLoginSuccess(res: UserInfo) {
-  //   // 填入使用者資料
-  //   // this.userService.setUserInfo(res);
-  //   // 設定token
-  //   this.tokenService.getAccessToken().setToken(res.jwtToken!);
-  //   // 跳轉頁面
-  //   this.router.navigate(['/home/overview']);
-  // }
-
-  private handlingLoginFailed(error: any) {
-    console.log(error);
-
-    this.dialogRef.open(AlertDialogComponent, {
-      minWidth: '360px',
-      disableClose: true,
-      autoFocus: false,
-      data: {
-        fieldTypeName: 'loginerror',
-        alertTitle: '登入失敗',
-        alertContent: '登入帳號或密碼錯誤，請確認',
-      },
-    });
   }
 }

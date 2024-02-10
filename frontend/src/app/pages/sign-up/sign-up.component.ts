@@ -16,6 +16,7 @@ import { AuthService } from 'src/app/api/v1/services';
 import { CustomExceptionDto } from 'src/app/api/v1/models';
 import { AlertDialogComponent } from 'src/app/commons/shared/alert-dialog/alert-dialog.component';
 import { ResponseError } from 'src/app/commons/interfaces/response-error';
+import { ErrorHandlerService } from 'src/app/core/services/error-handler.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -53,9 +54,15 @@ export class SignUpComponent {
     public dialogRef: MatDialog,
     private authService: AuthService,
     private alertSnackbarService: AlertSnackbarService,
+    private errorHandlerService: ErrorHandlerService,
   ) {}
 
   public signUp() {
+    this.signUpFormGroup.markAllAsTouched();
+    if (this.signUpFormGroup.invalid) {
+      return;
+    }
+
     this.authService
       .authControllerSignUp({
         body: this.signUpFormGroup.getRawValue(),
@@ -65,35 +72,7 @@ export class SignUpComponent {
           this.alertSnackbarService.onAttachRequestSucceeded();
           this.signUpFormGroup.reset();
         },
-        error: (error: any) => {
-          debugger;
-          if ('errorCode' in error.error) {
-            const customError = error.error as CustomExceptionDto;
-
-            this.dialogRef.open(AlertDialogComponent, {
-              minWidth: '360px',
-              disableClose: true,
-              autoFocus: false,
-              data: {
-                fieldTypeName: 'alertMsgWarn',
-                alertTitle: customError.errorCode,
-                alertContent: customError.errorMessage,
-              },
-            });
-          } else {
-            const defaultError = error.error as ResponseError;
-            this.dialogRef.open(AlertDialogComponent, {
-              minWidth: '360px',
-              disableClose: true,
-              autoFocus: false,
-              data: {
-                fieldTypeName: 'alertMsgWarn',
-                alertTitle: defaultError.error,
-                alertContent: defaultError.message.join('\n'),
-              },
-            });
-          }
-        },
+        error: this.errorHandlerService.handleRequestError.bind(this),
       });
   }
 }

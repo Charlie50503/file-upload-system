@@ -27,6 +27,9 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
     UsersModule,
     MongooseModule.forRoot(
       process.env.MONGODB_URL,
+      {
+        authSource: 'admin',
+      },
       // 'mongodb://host.docker.internal:27017/file-management',
     ),
   ],

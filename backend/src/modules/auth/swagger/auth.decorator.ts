@@ -1,20 +1,42 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOkResponse, getSchemaPath, ApiExtraModels } from '@nestjs/swagger';
 import { ResponseDto } from 'src/common/dto/response.dto';
-import { SignInResDto } from '../dto/sign-up.res.dto';
+import { SignUpResDto } from '../dto/sign-up.res.dto';
 export function ApiSignUpResponse() {
   return applyDecorators(
-    ApiExtraModels(ResponseDto, SignInResDto),
+    ApiExtraModels(ResponseDto, SignUpResDto),
     ApiOkResponse({
-      description: 'A list of files',
+      description: '註冊成功 response data',
       schema: {
         allOf: [
           { $ref: getSchemaPath(ResponseDto) },
           {
             properties: {
               data: {
-                type: 'array',
-                items: { $ref: getSchemaPath(SignInResDto) },
+                type: 'object',
+                items: { $ref: getSchemaPath(SignUpResDto) },
+              },
+            },
+          },
+        ],
+      },
+    }),
+  );
+}
+
+export function ApiSignInResponse() {
+  return applyDecorators(
+    ApiExtraModels(ResponseDto, SignUpResDto),
+    ApiOkResponse({
+      description: '登入成功 response data',
+      schema: {
+        allOf: [
+          { $ref: getSchemaPath(ResponseDto) },
+          {
+            properties: {
+              data: {
+                type: 'object',
+                items: { $ref: getSchemaPath(SignUpResDto) },
               },
             },
           },

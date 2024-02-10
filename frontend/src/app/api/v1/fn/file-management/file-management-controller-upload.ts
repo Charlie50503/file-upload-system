@@ -8,11 +8,16 @@ import { RequestBuilder } from '../../request-builder';
 
 
 export interface FileManagementControllerUpload$Params {
+      body: {
+'file'?: Blob;
+'fileName'?: string;
+}
 }
 
-export function fileManagementControllerUpload(http: HttpClient, rootUrl: string, params?: FileManagementControllerUpload$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function fileManagementControllerUpload(http: HttpClient, rootUrl: string, params: FileManagementControllerUpload$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
   const rb = new RequestBuilder(rootUrl, fileManagementControllerUpload.PATH, 'post');
   if (params) {
+    rb.body(params.body, 'multipart/form-data');
   }
 
   return http.request(

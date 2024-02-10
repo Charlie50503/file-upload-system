@@ -33,9 +33,9 @@ export class FileManagementService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `fileManagementControllerUpload()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  fileManagementControllerUpload$Response(params?: FileManagementControllerUpload$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  fileManagementControllerUpload$Response(params: FileManagementControllerUpload$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
     return fileManagementControllerUpload(this.http, this.rootUrl, params, context);
   }
 
@@ -43,9 +43,9 @@ export class FileManagementService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `fileManagementControllerUpload$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  fileManagementControllerUpload(params?: FileManagementControllerUpload$Params, context?: HttpContext): Observable<void> {
+  fileManagementControllerUpload(params: FileManagementControllerUpload$Params, context?: HttpContext): Observable<void> {
     return this.fileManagementControllerUpload$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );

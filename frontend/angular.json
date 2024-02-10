@@ -110,10 +110,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "templateProject:build:production"
+              "buildTarget": "fileManagement:build:production"
             },
             "development": {
-              "buildTarget": "templateProject:build:development"
+              "buildTarget": "fileManagement:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -121,7 +121,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "templateProject:build"
+            "buildTarget": "fileManagement:build"
           }
         },
         "test": {

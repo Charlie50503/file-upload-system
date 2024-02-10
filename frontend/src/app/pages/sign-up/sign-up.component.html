@@ -1,0 +1,74 @@
+<div class="pt-10">
+  <form [formGroup]="signUpFormGroup" autocomplete="off">
+    <h1 class="" font="noto-medium" class="mb-4 text-3xl font-bold text-center">
+      註冊帳號
+    </h1>
+    <ul class="list-none text-center">
+      <li class="">
+        <mat-form-field class="w-80">
+          <mat-label font="noto-medium">Email</mat-label>
+          <input formControlName="email" matInput />
+          <mat-error>
+            <ng-container
+              *ngIf="signUpFormGroup.controls['email'].hasError('required')"
+            >
+              該欄位必填
+            </ng-container>
+          </mat-error>
+        </mat-form-field>
+      </li>
+      <li class="">
+        <mat-form-field class="w-80">
+          <mat-label font="noto-medium">Name</mat-label>
+          <input formControlName="name" matInput />
+          <mat-error>
+            <ng-container
+              *ngIf="signUpFormGroup.controls['name'].hasError('required')"
+            >
+              該欄位必填
+            </ng-container>
+          </mat-error>
+        </mat-form-field>
+      </li>
+      <li>
+        <mat-form-field class="w-80">
+          <mat-label font="noto-medium">密碼</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            autocomplete="on"
+            [type]="isLoginPasswordHide ? 'password' : 'text'"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="isLoginPasswordHide = !isLoginPasswordHide"
+          >
+            <mat-icon>{{
+              isLoginPasswordHide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error>
+            <ng-container
+              *ngIf="signUpFormGroup.controls['password'].hasError('required')"
+            >
+              該欄位必填
+            </ng-container>
+          </mat-error>
+        </mat-form-field>
+      </li>
+    </ul>
+    <div class="text-center">
+      <button
+        mat-raised-button
+        class="hover:opacity-80"
+        color="primary"
+        type="submit"
+        (click)="signUp(); (false)"
+      >
+        註冊
+      </button>
+    </div>
+  </form>
+</div>

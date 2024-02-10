@@ -51,20 +51,27 @@ export class HomeComponent implements AfterViewInit {
       children: [],
     },
     {
-      pageName: '表單系統',
+      pageName: '註冊帳號',
       isShow: true,
-      route: '/FormSystem',
-      type: 'menu',
-      children: [
-        {
-          pageName: '博格',
-          isShow: true,
-          route: '/main/FormSystem/2/Detail',
-          type: 'link',
-          children: [],
-        },
-      ],
+      route: '/home/sign-up',
+      type: 'link',
+      children: [],
     },
+    // {
+    //   pageName: '表單系統',
+    //   isShow: true,
+    //   route: '/FormSystem',
+    //   type: 'menu',
+    //   children: [
+    //     {
+    //       pageName: '博格',
+    //       isShow: true,
+    //       route: '/main/FormSystem/2/Detail',
+    //       type: 'link',
+    //       children: [],
+    //     },
+    //   ],
+    // },
   ];
 
   constructor(

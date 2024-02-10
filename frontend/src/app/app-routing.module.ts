@@ -25,6 +25,13 @@ const routes: Routes = [
             'src/app/pages/file-management/file-management.component'
           ).then((c) => c.FileManagementComponent),
       },
+      {
+        path: 'sign-up',
+        loadComponent: () =>
+          import('src/app/pages/sign-up/sign-up.component').then(
+            (c) => c.SignUpComponent,
+          ),
+      },
     ],
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },

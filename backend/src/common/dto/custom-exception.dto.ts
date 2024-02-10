@@ -8,10 +8,10 @@ export class CustomExceptionDto {
   })
   statusCode: number;
   @ApiProperty({
-    description: 'message',
-    example: 'message',
+    description: 'errorMessage',
+    example: 'errorMessage',
   })
-  message: string;
+  errorMessage: string;
   @ApiProperty({
     description: 'error code',
     example: '001',

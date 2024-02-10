@@ -16,11 +16,11 @@ export class CustomExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     // 如果 statusCode 為 undefined，則使用 500 作為默認值
     const status = exception.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
-    const { message, errorCode } = exception;
+    const { errorMessage, errorCode } = exception;
 
     response.status(status).json({
       statusCode: status,
-      message: message,
+      errorMessage: errorMessage,
       errorCode: errorCode,
     });
   }

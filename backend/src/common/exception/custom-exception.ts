@@ -6,11 +6,13 @@ export class CustomException
   extends HttpException
   implements CustomExceptionDto
 {
-  constructor(statusCode: HttpStatus, message: string, errorCode: string) {
-    super(message, statusCode);
+  constructor(statusCode: HttpStatus, errorMessage: string, errorCode: string) {
+    super(errorMessage, statusCode);
     this.errorCode = errorCode;
     this.statusCode = statusCode;
+    this.errorMessage = errorMessage;
   }
+  errorMessage: string;
   statusCode: number;
   errorCode: string;
 }

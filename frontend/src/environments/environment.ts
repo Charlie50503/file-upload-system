@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:22437',
-  domain: 'localhost:22437',
+  apiUrl: 'http://localhost:3200',
+  domain: 'localhost:3200',
   baseUrl: '',
   name: '開發',
   tokenName: {
-    access: 'eTemplateProject_access_token',
+    access: 'file_management_access_token',
   },
 };
 

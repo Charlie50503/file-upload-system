@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://tapibuat.pscnet.com.tw/eTemplateProject',
-  domain: 'tapibuat.pscnet.com.tw',
-  baseUrl: '/eTemplateProject',
+  apiUrl: '',
+  domain: '',
+  baseUrl: '/fileManagement',
   name: 'UAT測試',
   tokenName: {
-    access: 'eTemplateProject_access_token',
+    access: 'file_management_access_token',
   },
 };
 

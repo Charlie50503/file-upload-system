@@ -1,10 +1,10 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://tapib.pscnet.com.tw/eTemplateProject',
-  domain: 'tapib.pscnet.com.tw',
-  baseUrl: '/eTemplateProject',
+  apiUrl: '',
+  domain: '',
+  baseUrl: '/fileManagement',
   name: '',
   tokenName: {
-    access: 'eTemplateProject_access_token',
+    access: 'file_management_access_token',
   },
 };

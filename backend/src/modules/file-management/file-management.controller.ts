@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -11,13 +12,20 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConsumes,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { ResponseDto } from 'src/common/dto/response.dto';
 import { MulterExceptionFilter } from 'src/common/filters/multer-exception.filter';
 import { FirebaseStorageService } from 'src/modules/file-management/firebase-storage.service';
 import { IFile } from './dto/file.dto';
 import { ApiGetFilesResponse } from './swagger/file-management.decorator';
 import { Response } from 'express';
+import { UploadDto } from './dto/upload.dto';
 
 @ApiTags('File Management') // swagger tag
 @Controller('file-management')
@@ -33,10 +41,28 @@ export class FileManagementController {
     }),
   )
   @UseFilters(MulterExceptionFilter) // 套用 error handler
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+        fileName: {
+          type: 'string',
+          example: 'fileName',
+        },
+      },
+    },
+  })
   async upload(
+    @Body() body: UploadDto,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<ResponseDto<string>> {
-    const fileName = await this.firebaseStorage.uploadFile(file);
+    const fileName = await this.firebaseStorage.uploadFile(file, body.fileName);
+
     return {
       statusCode: 200,
       message: 'success',

@@ -21,11 +21,13 @@ export class FirebaseStorageService {
     this.storageBucket = admin.storage();
   }
 
-  async uploadFile(file: Express.Multer.File): Promise<string> {
+  public async uploadFile(
+    file: Express.Multer.File,
+    fileName: string,
+  ): Promise<string> {
     const bucket = this.storageBucket.bucket();
-    const fileName = file.originalname.split('.').slice(0, -1).join('.'); // 获取文件名
-    const fileExtension = file.originalname.split('.').pop(); // 获取文件扩展名
-    const uniqueFilename = `${fileName}.${uuidv4()}.${fileExtension}`;
+
+    const uniqueFilename = this.uniqueFilename(fileName || file.originalname);
     const fileRef = bucket.file(uniqueFilename);
 
     await fileRef.save(file.buffer, {
@@ -36,7 +38,14 @@ export class FirebaseStorageService {
     return fileRef.name;
   }
 
-  async getFiles() {
+  private uniqueFilename(fileName: string) {
+    const originFileName = fileName.split('.').slice(0, -1).join('.'); // 获取文件名
+    const fileExtension = fileName.split('.').pop(); // 获取文件扩展名
+    const uniqueFilename = `${originFileName}.${uuidv4()}.${fileExtension}`;
+    return uniqueFilename;
+  }
+
+  public async getFiles() {
     const bucket = this.storageBucket.bucket();
 
     const [files] = await bucket.getFiles();
@@ -66,12 +75,12 @@ export class FirebaseStorageService {
     return result; // 等待所有文件处理完成后返回
   }
 
-  async deleteFile(fileName: string) {
+  public async deleteFile(fileName: string) {
     const bucket = this.storageBucket.bucket();
     const fileRef = bucket.file(fileName);
     await fileRef.delete();
   }
-  async downloadFile(fileName: string) {
+  public async downloadFile(fileName: string) {
     const bucket = this.storageBucket.bucket();
     const fileRef = bucket.file(fileName);
 

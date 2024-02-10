@@ -13,7 +13,7 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`.env`],
+      envFilePath: [`.env.${process.env.NODE_ENV}`],
       cache: true,
       isGlobal: true,
     }),
@@ -25,7 +25,10 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
     FileManagementModule,
     AuthModule,
     UsersModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/file-management'),
+    MongooseModule.forRoot(
+      process.env.MONGODB_URL,
+      // 'mongodb://host.docker.internal:27017/file-management',
+    ),
   ],
   controllers: [AppController],
   providers: [

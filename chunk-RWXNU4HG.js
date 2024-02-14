@@ -1,0 +1,1 @@
+import{Z as s}from"./chunk-6SN4HNTV.js";import{$ as e,W as i}from"./chunk-OBQHRRR6.js";var f=(()=>{let t=class t{constructor(r){this.dialog=r}setUserInfo(r){this._user=r}getUserInfo(){return this._user}};t.\u0275fac=function(n){return new(n||t)(e(s))},t.\u0275prov=i({token:t,factory:t.\u0275fac,providedIn:"root"});let o=t;return o})();export{f as a};

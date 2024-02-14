@@ -1,26 +1,42 @@
-# Base image
-FROM node:20.11.0-alpine3.18 as build
+# syntax = docker/dockerfile:1 指定 Dockerfile 使用的語法解析器
 
-# Create app directory
-WORKDIR /usr/src/app
+# Adjust NODE_VERSION as desired 設定 Node.js 版本
+ARG NODE_VERSION=20.11.0
+FROM node:${NODE_VERSION}-slim as base
 
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
+LABEL fly_launch_runtime="NestJS"
 
-# Install app dependencies
-RUN npm install
+# NestJS app lives here
+WORKDIR /app
 
-# Bundle app source
-COPY . .
+# Set production environment
+ENV NODE_ENV="production"
 
-# Copy the .env and .env.development files
-COPY .env* ./
 
-# Creates a "dist" folder with the production build
+# Throw-away build stage to reduce size of final image
+FROM base as build
+
+# Install packages needed to build node modules
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
+
+# Install node modules
+COPY --link package-lock.json package.json ./
+RUN npm ci --include=dev
+
+# Copy application code
+COPY --link . .
+
+# Build application
 RUN npm run build
 
-# Expose the port on which the app will run
-# EXPOSE 3400
 
-# Start the server using the production build
-CMD ["npm", "run", "start:prod"]
+# Final stage for app image
+FROM base
+
+# Copy built application
+COPY --from=build /app /app
+
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD [ "npm", "run", "start:prod" ]

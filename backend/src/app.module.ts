@@ -29,7 +29,15 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
       process.env.MONGODB_URL,
       {
         authSource: 'admin',
+        connectionFactory: (connection) => {
+          connection.on('connected', () => {
+            console.log('連線 mongodb 成功');
+          });
+          connection._events.connected();
+          return connection;
+        },
       },
+
       // 'mongodb://host.docker.internal:27017/file-management',
     ),
   ],

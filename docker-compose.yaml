@@ -15,6 +15,7 @@ services:
       - ./mongodb/init.d:/docker-entrypoint-initdb.d
     ports:
       - 27016:27017
+
   mongo-express:
     image: mongo-express
     restart: always
@@ -23,7 +24,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: admin
-      ME_CONFIG_MONGODB_URL: mongodb://admin:admin@mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://admin:admin@mongo:27017?authSource=admin
 
   # nginx:
   #   image: nginx
@@ -45,7 +46,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 80:80
-    
+
 volumes:
   mongo-data:
     driver: local

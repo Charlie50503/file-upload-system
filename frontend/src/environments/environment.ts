@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3200',
-  domain: 'localhost:3200',
+  apiUrl: 'http://localhost:3000',
+  domain: 'localhost:3000',
   baseUrl: '',
   name: '開發',
   tokenName: {

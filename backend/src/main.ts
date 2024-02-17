@@ -3,7 +3,9 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['log', 'debug', 'verbose', 'error', 'warn'], // 加上這一行設定
+  });
 
   const config = new DocumentBuilder()
     .setTitle('File Management API')

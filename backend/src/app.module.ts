@@ -10,6 +10,7 @@ import { AuthGuard } from './modules/auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BodyPartModule } from './modules/body-part/body-part.module';
+import { ExerciseModule } from './modules/exercise/exercise.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,6 +27,7 @@ import { BodyPartModule } from './modules/body-part/body-part.module';
     AuthModule,
     UsersModule,
     BodyPartModule,
+    ExerciseModule,
     // 檔案管理 table
     MongooseModule.forRoot(process.env.FILE_MANAGEMENT_MONGODB_URL, {
       connectionName: 'fileManagement',

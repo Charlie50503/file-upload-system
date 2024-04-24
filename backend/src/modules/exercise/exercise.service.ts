@@ -18,10 +18,8 @@ export class ExerciseService {
     return foundItems;
   }
 
-  public async create(
-    createUserDto: CreateExerciseDto,
-  ): Promise<ExerciseDocument> {
-    const createdExercise = new this.exerciseModel(createUserDto);
+  public async create(data: CreateExerciseDto): Promise<ExerciseDocument> {
+    const createdExercise = new this.exerciseModel(data);
     const createdItem = (await createdExercise.save()).toObject();
     return this.findOneById(createdItem._id.toString());
   }

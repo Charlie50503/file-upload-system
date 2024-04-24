@@ -13,5 +13,6 @@ import { Exercise, ExerciseSchema } from 'src/schemas/exercise.schema';
       'workOut',
     ),
   ],
+  exports: [ExerciseService],
 })
 export class ExerciseModule {}

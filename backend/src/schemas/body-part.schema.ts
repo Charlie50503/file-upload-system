@@ -21,4 +21,4 @@ export class BodyPart {
   // part_code: string; // 部位代號，設為唯一
 }
 
-export const UserSchema = SchemaFactory.createForClass(BodyPart); // 對應的 schema 並正確命名
+export const BodyPartSchema = SchemaFactory.createForClass(BodyPart); // 對應的 schema 並正確命名

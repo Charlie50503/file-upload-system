@@ -37,4 +37,4 @@ export class TrainingSession {
   rep: number; // REP 品質
 }
 
-export const UserSchema = SchemaFactory.createForClass(TrainingSession); // 對應的 schema 並正確命名
+export const TrainingSessionSchema = SchemaFactory.createForClass(TrainingSession); // 對應的 schema 並正確命名

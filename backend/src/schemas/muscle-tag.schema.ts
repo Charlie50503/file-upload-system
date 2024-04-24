@@ -17,4 +17,4 @@ export class MuscleTag {
   tag_name: string; // 訓練項目名稱
 }
 
-export const UserSchema = SchemaFactory.createForClass(MuscleTag); // 對應的 schema 並正確命名
+export const MuscleTagSchema = SchemaFactory.createForClass(MuscleTag); // 對應的 schema 並正確命名

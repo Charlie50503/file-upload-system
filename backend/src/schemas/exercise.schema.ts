@@ -30,4 +30,4 @@ export class Exercise {
   muscle_tags: ObjectId[]; // 訓練項目對應標籤
 }
 
-export const UserSchema = SchemaFactory.createForClass(Exercise); // 對應的 schema 並正確命名
+export const ExerciseSchema = SchemaFactory.createForClass(Exercise); // 對應的 schema 並正確命名

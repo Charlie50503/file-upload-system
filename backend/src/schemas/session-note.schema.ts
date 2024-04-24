@@ -19,4 +19,4 @@ export class SessionNote {
   record_date: Date; // 紀錄日期
 }
 
-export const UserSchema = SchemaFactory.createForClass(SessionNote); // 對應的 schema 並正確命名
+export const SessionNoteSchema = SchemaFactory.createForClass(SessionNote); // 對應的 schema 並正確命名

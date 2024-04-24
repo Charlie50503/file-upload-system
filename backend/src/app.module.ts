@@ -1,4 +1,9 @@
-import { Module, ValidationPipe } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  ValidationPipe,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
@@ -13,6 +18,7 @@ import { BodyPartModule } from './modules/body-part/body-part.module';
 import { ExerciseModule } from './modules/exercise/exercise.module';
 import { MuscleTagModule } from './modules/muscle-tag/muscle-tag.module';
 import { SessionNoteModule } from './modules/session-note/session-note.module';
+import { LoggingMiddleware } from './middleware/logger.middleware';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -70,4 +76,8 @@ import { SessionNoteModule } from './modules/session-note/session-note.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggingMiddleware).forRoutes('*'); // 註冊 log middleware
+  }
+}

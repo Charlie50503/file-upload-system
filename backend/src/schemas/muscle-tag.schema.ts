@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type BodyPartDocument = HydratedDocument<MuscleTag>;
+export type MuscleTagDocument = HydratedDocument<MuscleTag>;
 
 /**
  * 訓練項目標籤

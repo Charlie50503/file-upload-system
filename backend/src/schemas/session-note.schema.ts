@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type BodyPartDocument = HydratedDocument<SessionNote>;
+export type SessionNoteDocument = HydratedDocument<SessionNote>;
 
 /**
  * 心得紀錄

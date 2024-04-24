@@ -11,6 +11,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BodyPartModule } from './modules/body-part/body-part.module';
 import { ExerciseModule } from './modules/exercise/exercise.module';
+import { MuscleTagModule } from './modules/muscle-tag/muscle-tag.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -28,6 +29,7 @@ import { ExerciseModule } from './modules/exercise/exercise.module';
     UsersModule,
     BodyPartModule,
     ExerciseModule,
+    MuscleTagModule,
     // 檔案管理 table
     MongooseModule.forRoot(process.env.FILE_MANAGEMENT_MONGODB_URL, {
       connectionName: 'fileManagement',

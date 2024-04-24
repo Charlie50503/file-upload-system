@@ -25,21 +25,30 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
     FileManagementModule,
     AuthModule,
     UsersModule,
-    MongooseModule.forRoot(
-      process.env.MONGODB_URL,
-      {
-        authSource: 'admin',
-        connectionFactory: (connection) => {
-          connection.on('connected', () => {
-            console.log('連線 mongodb 成功');
-          });
-          connection._events.connected();
-          return connection;
-        },
+    // 檔案管理 table
+    MongooseModule.forRoot(process.env.FILE_MANAGEMENT_MONGODB_URL, {
+      connectionName: 'fileManagement',
+      authSource: 'admin',
+      connectionFactory: (connection) => {
+        connection.on('connected', () => {
+          console.log('連線 fileManagement mongodb 成功');
+        });
+        connection._events.connected();
+        return connection;
       },
-
-      // 'mongodb://host.docker.internal:27017/file-management',
-    ),
+    }),
+    // 健身記錄管理 table
+    MongooseModule.forRoot(process.env.WORK_OUT_MONGODB_URL, {
+      connectionName: 'workOut',
+      authSource: 'admin',
+      connectionFactory: (connection) => {
+        connection.on('connected', () => {
+          console.log('連線 workOut mongodb 成功');
+        });
+        connection._events.connected();
+        return connection;
+      },
+    }),
   ],
   controllers: [AppController],
   providers: [

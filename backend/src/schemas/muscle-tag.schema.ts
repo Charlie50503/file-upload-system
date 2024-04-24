@@ -13,7 +13,7 @@ export type BodyPartDocument = HydratedDocument<MuscleTag>;
   timestamps: true, // 啟用時間戳記，自動添加 createdAt 和 updatedAt 字段
 })
 export class MuscleTag {
-  @Prop({ required: true, trim: true })
+  @Prop({ required: true, trim: true, unique: true, lowercase: true })
   tag_name: string; // 訓練項目名稱
 }
 

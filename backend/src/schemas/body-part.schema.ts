@@ -15,10 +15,14 @@ export type BodyPartDocument = HydratedDocument<BodyPart>;
 export class BodyPart {
   @Prop({ required: true, trim: true })
   part_chinese_name: string; // 部位中文名稱
-  @Prop({ trim: true, default: '' })
-  exercise_english_name: string; // 部位英文名稱
-  // @Prop({ required: true, trim: true, unique: true })
-  // part_code: string; // 部位代號，設為唯一
+  @Prop({
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+    lowercase: true,
+  })
+  part_english_name: string; // 部位英文名稱
 }
 
 export const BodyPartSchema = SchemaFactory.createForClass(BodyPart); // 對應的 schema 並正確命名

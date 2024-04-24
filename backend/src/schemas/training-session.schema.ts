@@ -24,7 +24,7 @@ export class TrainingSession {
     ref: 'Exercise',
     required: true,
   })
-  exercise_id: ObjectId; // 訓練代號，參考訓練表
+  exercise_id: ObjectId; // 訓練項目代號，參考訓練項目表
   @Prop({ required: true, trim: true })
   date: Date; // 訓練日期
   @Prop({ required: true })
@@ -33,7 +33,7 @@ export class TrainingSession {
   reps: number; // 動作次數
   @Prop({ required: true, min: 0 })
   sets: number; // 動作組數
-  @Prop({ required: true, min: 0 })
+  @Prop({ required: true, min: 0, max: 10 })
   rep: number; // REP 品質
 }
 

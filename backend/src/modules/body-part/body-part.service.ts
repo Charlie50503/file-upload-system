@@ -22,8 +22,6 @@ export class BodyPartService {
   ): Promise<BodyPartDocument> {
     const createdBodyPart = new this.bodyPartModel(createUserDto);
     const bodyPart = (await createdBodyPart.save()).toObject();
-    console.log('create service', bodyPart);
-
     return this.findOneById(bodyPart._id.toString());
   }
 

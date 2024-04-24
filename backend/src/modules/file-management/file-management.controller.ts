@@ -26,10 +26,12 @@ import { IFile } from './dto/file.dto';
 import { ApiGetFilesResponse } from './swagger/file-management.decorator';
 import { Response } from 'express';
 import { UploadDto } from './dto/upload.dto';
+import { CustomExceptionFilter } from 'src/common/filters/custom-exception.filter';
 
 @ApiTags('File Management') // swagger tag
-@Controller('file-management')
 @ApiBearerAuth('JWT-auth')
+@Controller('file-management')
+@UseFilters(new CustomExceptionFilter()) // 將過濾器應用到控制器
 export class FileManagementController {
   constructor(private firebaseStorage: FirebaseStorageService) {}
   @Post('file')

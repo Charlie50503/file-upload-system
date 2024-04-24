@@ -5,7 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { FileManagementModule } from './modules/file-management/file-management.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
-import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
+import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -60,10 +60,6 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
     {
       provide: APP_PIPE,
       useClass: ValidationPipe,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: CustomExceptionFilter,
     },
   ],
 })

@@ -13,5 +13,6 @@ import { BodyPart, BodyPartSchema } from 'src/schemas/body-part.schema';
       'workOut',
     ),
   ],
+  exports: [BodyPartService],
 })
 export class BodyPartModule {}

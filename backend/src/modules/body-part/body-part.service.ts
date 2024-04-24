@@ -17,10 +17,8 @@ export class BodyPartService {
     return foundItems;
   }
 
-  public async create(
-    createUserDto: CreateBodyPartDto,
-  ): Promise<BodyPartDocument> {
-    const createdBodyPart = new this.bodyPartModel(createUserDto);
+  public async create(data: CreateBodyPartDto): Promise<BodyPartDocument> {
+    const createdBodyPart = new this.bodyPartModel(data);
     const createdItem = (await createdBodyPart.save()).toObject();
     return this.findOneById(createdItem._id.toString());
   }

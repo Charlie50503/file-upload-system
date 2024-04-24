@@ -14,16 +14,16 @@ export class ExerciseService {
   ) {}
 
   public async getAll(): Promise<ExerciseDocument[]> {
-    const Exercises = await this.exerciseModel.find();
-    return Exercises;
+    const foundItems = await this.exerciseModel.find();
+    return foundItems;
   }
 
   public async create(
     createUserDto: CreateExerciseDto,
   ): Promise<ExerciseDocument> {
     const createdExercise = new this.exerciseModel(createUserDto);
-    const Exercise = (await createdExercise.save()).toObject();
-    return this.findOneById(Exercise._id.toString());
+    const createdItem = (await createdExercise.save()).toObject();
+    return this.findOneById(createdItem._id.toString());
   }
 
   public async updateOne(id: string, data: UpdateExerciseDto) {
@@ -52,7 +52,7 @@ export class ExerciseService {
   }
 
   public async findOneById(id: string): Promise<ExerciseDocument | undefined> {
-    const Exercise = await this.exerciseModel.findById(id);
-    return Exercise;
+    const foundItem = await this.exerciseModel.findById(id);
+    return foundItem;
   }
 }

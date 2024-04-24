@@ -13,16 +13,16 @@ export class BodyPartService {
   ) {}
 
   public async getAll(): Promise<BodyPartDocument[]> {
-    const bodyParts = await this.bodyPartModel.find();
-    return bodyParts;
+    const foundItems = await this.bodyPartModel.find();
+    return foundItems;
   }
 
   public async create(
     createUserDto: CreateBodyPartDto,
   ): Promise<BodyPartDocument> {
     const createdBodyPart = new this.bodyPartModel(createUserDto);
-    const bodyPart = (await createdBodyPart.save()).toObject();
-    return this.findOneById(bodyPart._id.toString());
+    const createdItem = (await createdBodyPart.save()).toObject();
+    return this.findOneById(createdItem._id.toString());
   }
 
   public async updateOne(id: string, data: UpdateBodyPartDto) {
@@ -49,7 +49,7 @@ export class BodyPartService {
   }
 
   public async findOneById(id: string): Promise<BodyPartDocument | undefined> {
-    const bodyPart = await this.bodyPartModel.findById(id);
-    return bodyPart;
+    const foundItem = await this.bodyPartModel.findById(id);
+    return foundItem;
   }
 }

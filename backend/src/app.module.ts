@@ -19,6 +19,7 @@ import { ExerciseModule } from './modules/exercise/exercise.module';
 import { MuscleTagModule } from './modules/muscle-tag/muscle-tag.module';
 import { SessionNoteModule } from './modules/session-note/session-note.module';
 import { LoggingMiddleware } from './middleware/logger.middleware';
+import { TrainingSessionModule } from './modules/training-session/training-session.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -38,6 +39,7 @@ import { LoggingMiddleware } from './middleware/logger.middleware';
     ExerciseModule,
     MuscleTagModule,
     SessionNoteModule,
+    TrainingSessionModule,
     // 檔案管理 table
     MongooseModule.forRoot(process.env.FILE_MANAGEMENT_MONGODB_URL, {
       connectionName: 'fileManagement',

@@ -9,7 +9,7 @@ import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CustomExceptionFilter } from './common/filters/custom-exception.filter';
+import { BodyPartModule } from './modules/body-part/body-part.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -25,6 +25,7 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
     FileManagementModule,
     AuthModule,
     UsersModule,
+    BodyPartModule,
     // 檔案管理 table
     MongooseModule.forRoot(process.env.FILE_MANAGEMENT_MONGODB_URL, {
       connectionName: 'fileManagement',
@@ -54,7 +55,7 @@ import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
   providers: [
     AppService,
     {
-      provide: APP_GUARD,
+      provide: APP_GUARD, // 全域都使用 auth 驗證
       useClass: AuthGuard,
     },
     {

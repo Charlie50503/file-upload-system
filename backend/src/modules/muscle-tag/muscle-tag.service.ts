@@ -52,4 +52,9 @@ export class MuscleTagService {
     const foundItem = await this.muscleTagModel.findById(id);
     return foundItem;
   }
+
+  public async isDataExist(id: string): Promise<boolean> {
+    // 確認資料是否存在 使用 != 比對 null 跟 undefined
+    return (await this.muscleTagModel.exists({ _id: id })) != null;
+  }
 }

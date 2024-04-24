@@ -22,9 +22,9 @@ export class SessionNoteService {
   }
 
   public async create(
-    createUserDto: CreateSessionNoteDto,
+    data: CreateSessionNoteDto,
   ): Promise<SessionNoteDocument> {
-    const createdBodyPart = new this.sessionNoteModel(createUserDto);
+    const createdBodyPart = new this.sessionNoteModel(data);
     const createdItem = (await createdBodyPart.save()).toObject();
     return this.findOneById(createdItem._id.toString());
   }

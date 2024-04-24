@@ -24,7 +24,7 @@ import { UpdateSessionNoteDto } from './dto/update-session-note.dto';
 export class SessionNoteController {
   constructor(private readonly sessionNoteService: SessionNoteService) {}
 
-  @Get('session-note')
+  @Get('session-notes')
   @ApiOperation({
     summary: '取得所有訓練心得資料',
     description: '取得所有訓練心得',

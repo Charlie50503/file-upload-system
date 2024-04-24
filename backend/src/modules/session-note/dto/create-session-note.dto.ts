@@ -16,7 +16,7 @@ export class CreateSessionNoteDto {
   @ApiProperty({
     description: '訓練日期',
     example: new Date().toISOString(),
-    type: 'date',
+    type: 'string', // 注意這裡應該是 string，因為 JSON 中日期為字符串
   })
   record_date: Date;
 }

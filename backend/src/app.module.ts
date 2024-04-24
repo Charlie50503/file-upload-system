@@ -12,6 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { BodyPartModule } from './modules/body-part/body-part.module';
 import { ExerciseModule } from './modules/exercise/exercise.module';
 import { MuscleTagModule } from './modules/muscle-tag/muscle-tag.module';
+import { SessionNoteModule } from './modules/session-note/session-note.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -30,6 +31,7 @@ import { MuscleTagModule } from './modules/muscle-tag/muscle-tag.module';
     BodyPartModule,
     ExerciseModule,
     MuscleTagModule,
+    SessionNoteModule,
     // 檔案管理 table
     MongooseModule.forRoot(process.env.FILE_MANAGEMENT_MONGODB_URL, {
       connectionName: 'fileManagement',

@@ -1,1 +1,2 @@
 [![pages-build-deployment](https://github.com/Charlie50503/file-upload-system/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Charlie50503/file-upload-system/actions/workflows/pages/pages-build-deployment)
+[![CI](https://github.com/Charlie50503/file-upload-system/actions/workflows/main.yml/badge.svg)](https://github.com/Charlie50503/file-upload-system/actions/workflows/main.yml)

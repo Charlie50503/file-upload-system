@@ -14,7 +14,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from '../../common/decorator/public.decorator';
 import { CreateBodyPartDto } from './dto/create-body-part.dto';
 import { MongoExceptionFilter } from '../../common/filters/mongo-exception.filter';
-import { IsObjectIdPipe } from 'nestjs-object-id';
+import { IsObjectIdPipe } from '../../common/pipes/is-object-id.pipe';
 import { UpdateBodyPartDto } from './dto/update-body-part.dto';
 @ApiTags('WorkOut')
 @Controller('work-out')

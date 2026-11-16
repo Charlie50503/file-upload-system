@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SignInResDto } from 'src/app/api/v1/models';
+import { SignInResDto } from '../../api/v1/models';
 
 export interface LoginPage {
   isShowITDepPage?: boolean;

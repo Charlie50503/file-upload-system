@@ -1,17 +1,17 @@
 <div class="flex justify-between">
   <div class="flex">
     <div class="mr-2 flex items-center">
-      <ng-container [ngSwitch]="data.action">
-        <mat-icon class="text-emerald-600" *ngSwitchCase="actionType.SUCCESS">
-          task_alt
-        </mat-icon>
-        <mat-icon class="text-red-700" *ngSwitchCase="actionType.ERROR">
-          cancel
-        </mat-icon>
-        <mat-icon class="text-amber-400" *ngSwitchCase="actionType.WARNING">
-          error
-        </mat-icon>
-      </ng-container>
+      @switch (data.action) {
+        @case (actionType.SUCCESS) {
+          <mat-icon class="text-emerald-600"> task_alt </mat-icon>
+        }
+        @case (actionType.ERROR) {
+          <mat-icon class="text-red-700"> cancel </mat-icon>
+        }
+        @case (actionType.WARNING) {
+          <mat-icon class="text-amber-400"> error </mat-icon>
+        }
+      }
     </div>
     <div font="dream-regular" class="flex items-center text-base font-bold">
       {{ data.message }}

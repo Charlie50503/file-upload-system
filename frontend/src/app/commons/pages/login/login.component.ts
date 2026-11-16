@@ -1,7 +1,6 @@
-import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -14,20 +13,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserService } from '../../../core/services/user.service';
 import { TokenService } from '../../../core/services/token.service';
-import { AuthService } from 'src/app/api/v1/services';
-import { ErrorHandlerService } from 'src/app/core/services/error-handler.service';
+import { AuthService } from '../../../api/v1/services';
+import { ErrorHandlerService } from '../../../core/services/error-handler.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
     MatButtonModule,
-    CommonModule,
   ],
 })
 export class LoginComponent {
@@ -72,7 +70,7 @@ export class LoginComponent {
           this.tokenService.getAccessToken().setToken(res.data.token!);
           this.router.navigate(['/home/file-management']);
         },
-        error: this.errorHandlerService.handleRequestError.bind(this),
+        error: this.errorHandlerService.handleRequestError.bind(this.errorHandlerService),
       });
   }
 }

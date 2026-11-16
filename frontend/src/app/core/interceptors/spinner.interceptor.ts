@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { PrimarySpinnerService } from 'src/app/commons/shared/spinner/primary-spinner/primary-spinner.service';
+import { PrimarySpinnerService } from '../../commons/shared/spinner/primary-spinner/primary-spinner.service';
 
 export const spinnerInterceptor: HttpInterceptorFn = (req, next) => {
   const primarySpinnerService = inject(PrimarySpinnerService);

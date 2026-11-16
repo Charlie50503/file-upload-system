@@ -1,9 +1,4 @@
-import {
-  HttpInterceptorFn,
-  HttpEvent,
-  HttpResponse,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpInterceptorFn, HttpEvent, HttpResponse, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { switchMap, of } from 'rxjs';
 import { TokenService } from '../services/token.service';

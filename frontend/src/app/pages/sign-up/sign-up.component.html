@@ -9,11 +9,9 @@
           <mat-label font="noto-medium">Email</mat-label>
           <input formControlName="email" matInput />
           <mat-error>
-            <ng-container
-              *ngIf="signUpFormGroup.controls['email'].hasError('required')"
-            >
+            @if (signUpFormGroup.controls["email"].hasError("required")) {
               該欄位必填
-            </ng-container>
+            }
           </mat-error>
         </mat-form-field>
       </li>
@@ -22,11 +20,9 @@
           <mat-label font="noto-medium">Name</mat-label>
           <input formControlName="name" matInput />
           <mat-error>
-            <ng-container
-              *ngIf="signUpFormGroup.controls['name'].hasError('required')"
-            >
+            @if (signUpFormGroup.controls["name"].hasError("required")) {
               該欄位必填
-            </ng-container>
+            }
           </mat-error>
         </mat-form-field>
       </li>
@@ -50,11 +46,9 @@
             }}</mat-icon>
           </button>
           <mat-error>
-            <ng-container
-              *ngIf="signUpFormGroup.controls['password'].hasError('required')"
-            >
+            @if (signUpFormGroup.controls["password"].hasError("required")) {
               該欄位必填
-            </ng-container>
+            }
           </mat-error>
         </mat-form-field>
       </li>

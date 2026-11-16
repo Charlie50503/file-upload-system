@@ -9,40 +9,50 @@
           <mat-label font="noto-medium">Email</mat-label>
           <input formControlName="email" matInput />
           <mat-error>
-            <ng-container *ngIf="
-                loginFormGroup.controls['email'].hasError('required')
-              ">
+            @if (loginFormGroup.controls["email"].hasError("required")) {
               該欄位必填
-            </ng-container>
+            }
           </mat-error>
         </mat-form-field>
       </li>
       <li>
         <mat-form-field class="w-80">
           <mat-label font="noto-medium">密碼</mat-label>
-          <input formControlName="password" matInput autocomplete="on"
-            [type]="isLoginPasswordHide ? 'password' : 'text'" (keyup.enter)="LoginUI()" />
-          <button type="button" mat-icon-button matSuffix (click)="isLoginPasswordHide = !isLoginPasswordHide">
+          <input
+            formControlName="password"
+            matInput
+            autocomplete="on"
+            [type]="isLoginPasswordHide ? 'password' : 'text'"
+            (keyup.enter)="LoginUI()"
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="isLoginPasswordHide = !isLoginPasswordHide"
+          >
             <mat-icon>{{
               isLoginPasswordHide ? "visibility_off" : "visibility"
-              }}</mat-icon>
+            }}</mat-icon>
           </button>
           <mat-error>
-            <ng-container *ngIf="
-                loginFormGroup.controls['password'].hasError('required')
-              ">
+            @if (loginFormGroup.controls["password"].hasError("required")) {
               該欄位必填
-            </ng-container>
+            }
           </mat-error>
         </mat-form-field>
       </li>
     </ul>
     <div class="text-center">
-      <button mat-fab class="hover:opacity-80" color="primary" font="noto-regular" type="submit"
-        (click)="LoginUI(); (false)">
-        <mat-icon>
-          login
-        </mat-icon>
+      <button
+        mat-fab
+        class="hover:opacity-80"
+        color="primary"
+        font="noto-regular"
+        type="submit"
+        (click)="LoginUI(); (false)"
+      >
+        <mat-icon> login </mat-icon>
       </button>
     </div>
   </form>

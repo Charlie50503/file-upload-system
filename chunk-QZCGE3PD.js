@@ -1,0 +1,1 @@
+import{Y as o}from"./chunk-DGOZZTNF.js";import{X as e,aa as i}from"./chunk-VB76NZLL.js";var c=(()=>{class t{constructor(r){this.dialog=r}setUserInfo(r){this._user=r}getUserInfo(){return this._user}static{this.\u0275fac=function(s){return new(s||t)(i(o))}}static{this.\u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})}}return t})();export{c as a};

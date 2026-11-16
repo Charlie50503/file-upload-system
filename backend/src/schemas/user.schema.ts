@@ -19,6 +19,10 @@ export class User {
     select: false,
   })
   email: string;
+
+  // 由 timestamps: true 自動產生，僅宣告型別
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

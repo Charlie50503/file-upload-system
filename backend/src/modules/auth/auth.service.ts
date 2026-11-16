@@ -39,6 +39,7 @@ export class AuthService {
     delete user.password;
     return {
       ...user.toJSON(),
+      _id: user.id,
       token: await this.tokenService.generatorToken(user.id, user.email),
     };
   }
@@ -62,6 +63,7 @@ export class AuthService {
 
     return {
       ...createdUser.toJSON(),
+      _id: createdUser.id,
       token: await this.tokenService.generatorToken(
         createdUser.id,
         createdUser.email,

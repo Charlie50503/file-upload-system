@@ -1,0 +1,1 @@
+import{c as En}from"./chunk-C2cwlIbY.js";import{Un as w,ut as S}from"./main-EGYQTZBL.js";var c=(()=>{class t{constructor(r){this.dialog=r}setUserInfo(r){this._user=r}getUserInfo(){return this._user}static{this.ɵfac=function(s){return new(s||t)(w(En))}}static{this.ɵprov=S({token:t,factory:t.ɵfac,providedIn:`root`})}}return t})();export{c as t};

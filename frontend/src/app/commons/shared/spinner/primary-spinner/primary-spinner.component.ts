@@ -1,17 +1,18 @@
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   Component,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { CommonModule } from '@angular/common';
+
 import { PrimarySpinnerService } from './primary-spinner.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-primary-spinner',
   templateUrl: './primary-spinner.component.html',
   styles: [],
-  standalone: true,
-  imports: [NgxSpinnerModule, CommonModule],
+  imports: [NgxSpinnerModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PrimarySpinnerComponent {

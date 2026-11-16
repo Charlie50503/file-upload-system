@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CustomExceptionDto } from 'src/app/api/v1/models';
-import { ResponseError } from 'src/app/commons/interfaces/response-error';
-import { AlertDialogComponent } from 'src/app/commons/shared/alert-dialog/alert-dialog.component';
+import { CustomExceptionDto } from '../../api/v1/models';
+import { ResponseError } from '../../commons/interfaces/response-error';
+import { AlertDialogComponent } from '../../commons/shared/alert-dialog/alert-dialog.component';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +33,9 @@ export class ErrorHandlerService {
         data: {
           fieldTypeName: 'alertMsgWarn',
           alertTitle: defaultError.error,
-          alertContent: defaultError.message.join('\n'),
+          alertContent: Array.isArray(defaultError.message)
+            ? defaultError.message.join('\n')
+            : defaultError.message,
         },
       });
     } else {

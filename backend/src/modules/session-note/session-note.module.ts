@@ -4,7 +4,7 @@ import { SessionNoteService } from './session-note.service';
 import {
   SessionNote,
   SessionNoteSchema,
-} from 'src/schemas/session-note.schema';
+} from '../../schemas/session-note.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({

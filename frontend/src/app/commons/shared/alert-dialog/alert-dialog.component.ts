@@ -1,5 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import {
   MatDialogRef,
   MAT_DIALOG_DATA,
@@ -17,8 +23,8 @@ export interface DialogData {
   selector: 'app-alert-dialog',
   templateUrl: './alert-dialog.component.html',
   styleUrls: ['./alert-dialog.component.scss'],
-  standalone: true,
-  imports: [MatIconModule, MatDialogModule, CommonModule, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [MatIconModule, MatDialogModule, MatButtonModule],
 })
 export class AlertDialogComponent implements OnInit {
   @Output() submitClicked = new EventEmitter<any>();

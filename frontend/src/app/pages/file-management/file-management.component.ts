@@ -1,22 +1,27 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { filter, map, switchMap } from 'rxjs';
-import { IFile } from 'src/app/api/v1/models';
-import { FileManagementService } from 'src/app/api/v1/services';
-import { FileSizePipe } from 'src/app/core/pipes/file-size.pipe';
-import { ErrorHandlerService } from 'src/app/core/services/error-handler.service';
-import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
+import { IFile } from '../../api/v1/models';
+import { FileManagementService } from '../../api/v1/services';
+import { FileSizePipe } from '../../core/pipes/file-size.pipe';
+import { ErrorHandlerService } from '../../core/services/error-handler.service';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-file-management',
   templateUrl: './file-management.component.html',
   styleUrl: './file-management.component.scss',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatTableModule,
     MatButtonModule,
@@ -57,7 +62,7 @@ export class FileManagementComponent implements AfterViewInit {
         next: (data) => {
           this.dataSource.data = data;
         },
-        error: this.errorHandlerService.handleRequestError.bind(this),
+        error: this.errorHandlerService.handleRequestError.bind(this.errorHandlerService),
       });
   }
 
@@ -82,7 +87,7 @@ export class FileManagementComponent implements AfterViewInit {
           document.body.removeChild(a);
           window.URL.revokeObjectURL(downloadUrl);
         },
-        error: this.errorHandlerService.handleRequestError.bind(this),
+        error: this.errorHandlerService.handleRequestError.bind(this.errorHandlerService),
       });
   }
 
@@ -108,7 +113,7 @@ export class FileManagementComponent implements AfterViewInit {
         next: (data) => {
           this.fetchData();
         },
-        error: this.errorHandlerService.handleRequestError.bind(this),
+        error: this.errorHandlerService.handleRequestError.bind(this.errorHandlerService),
       });
   }
 
@@ -139,7 +144,7 @@ export class FileManagementComponent implements AfterViewInit {
         next: (data) => {
           this.fetchData();
         },
-        error: this.errorHandlerService.handleRequestError.bind(this),
+        error: this.errorHandlerService.handleRequestError.bind(this.errorHandlerService),
       });
   }
 }

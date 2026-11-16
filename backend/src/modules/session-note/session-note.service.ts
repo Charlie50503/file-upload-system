@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
 import {
   SessionNote,
   SessionNoteDocument,
-} from 'src/schemas/session-note.schema';
+} from '../../schemas/session-note.schema';
 import { CreateSessionNoteDto } from './dto/create-session-note.dto';
 import { UpdateSessionNoteDto } from './dto/update-session-note.dto';
 

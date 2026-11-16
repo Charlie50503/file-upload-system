@@ -9,12 +9,12 @@ import {
   UseFilters,
 } from '@nestjs/common';
 import { BodyPartService } from './body-part.service';
-import { HttpResponse } from 'src/common/classes/response';
+import { HttpResponse } from '../../common/classes/response';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/common/decorator/public.decorator';
+import { Public } from '../../common/decorator/public.decorator';
 import { CreateBodyPartDto } from './dto/create-body-part.dto';
-import { MongoExceptionFilter } from 'src/common/filters/mongo-exception.filter';
-import { IsObjectIdPipe } from 'nestjs-object-id';
+import { MongoExceptionFilter } from '../../common/filters/mongo-exception.filter';
+import { IsObjectIdPipe } from '../../common/pipes/is-object-id.pipe';
 import { UpdateBodyPartDto } from './dto/update-body-part.dto';
 @ApiTags('WorkOut')
 @Controller('work-out')

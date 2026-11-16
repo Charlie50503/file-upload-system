@@ -10,10 +10,10 @@ import {
   UseFilters,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { IsObjectIdPipe } from 'nestjs-object-id';
-import { HttpResponse } from 'src/common/classes/response';
-import { Public } from 'src/common/decorator/public.decorator';
-import { MongoExceptionFilter } from 'src/common/filters/mongo-exception.filter';
+import { IsObjectIdPipe } from '../../common/pipes/is-object-id.pipe';
+import { HttpResponse } from '../../common/classes/response';
+import { Public } from '../../common/decorator/public.decorator';
+import { MongoExceptionFilter } from '../../common/filters/mongo-exception.filter';
 import { CreateExerciseDto } from './dto/create-exercise.dto';
 import { UpdateExerciseDto } from './dto/update-exercise.dto';
 

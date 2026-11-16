@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Param, Post, UseFilters } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { ResponseDto } from 'src/common/dto/response.dto';
-import { UserDocument } from 'src/schemas/user.schema';
+import { ResponseDto } from '../../common/dto/response.dto';
+import { UserDocument } from '../../schemas/user.schema';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
-import { Public } from 'src/common/decorator/public.decorator';
-import { HttpResponse } from 'src/common/classes/response';
-import { CustomExceptionFilter } from 'src/common/filters/custom-exception.filter';
+import { Public } from '../../common/decorator/public.decorator';
+import { HttpResponse } from '../../common/classes/response';
+import { CustomExceptionFilter } from '../../common/filters/custom-exception.filter';
 
 @ApiTags('Users')
 @Controller('users')

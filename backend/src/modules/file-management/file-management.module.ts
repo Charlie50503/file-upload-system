@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { FileManagementController } from 'src/modules/file-management/file-management.controller';
-import { FirebaseStorageService } from 'src/modules/file-management/firebase-storage.service';
+import { FileManagementController } from './file-management.controller';
+import { FirebaseStorageService } from './firebase-storage.service';
 @Module({
   imports: [],
   controllers: [FileManagementController],

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { BodyPart, BodyPartDocument } from 'src/schemas/body-part.schema';
+import { BodyPart, BodyPartDocument } from '../../schemas/body-part.schema';
 import { CreateBodyPartDto } from './dto/create-body-part.dto';
 import { UpdateBodyPartDto } from './dto/update-body-part.dto';
 import { DeleteResult } from 'mongodb';

@@ -1,15 +1,16 @@
-import * as admin from 'firebase-admin';
+import { cert, initializeApp } from 'firebase-admin/app';
+import { getStorage, Storage } from 'firebase-admin/storage';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { v4 as uuidv4 } from 'uuid';
 import { IFile } from './dto/file.dto';
 @Injectable()
 export class FirebaseStorageService {
-  private storageBucket: admin.storage.Storage;
+  private storageBucket: Storage;
 
   constructor(private configService: ConfigService) {
-    admin.initializeApp({
-      credential: admin.credential.cert({
+    const app = initializeApp({
+      credential: cert({
         projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
         clientEmail: configService.get<string>('FIREBASE_CLIENT_EMAIL'),
         privateKey: configService.get<string>('FIREBASE_PRIVATE_KEY'),
@@ -18,7 +19,7 @@ export class FirebaseStorageService {
       storageBucket: configService.get<string>('FIREBASE_STORAGE_BUCKET'),
     });
 
-    this.storageBucket = admin.storage();
+    this.storageBucket = getStorage(app);
   }
 
   public async uploadFile(

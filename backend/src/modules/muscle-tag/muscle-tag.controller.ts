@@ -9,10 +9,10 @@ import {
   UseFilters,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { IsObjectIdPipe } from 'nestjs-object-id';
-import { HttpResponse } from 'src/common/classes/response';
-import { Public } from 'src/common/decorator/public.decorator';
-import { MongoExceptionFilter } from 'src/common/filters/mongo-exception.filter';
+import { IsObjectIdPipe } from '../../common/pipes/is-object-id.pipe';
+import { HttpResponse } from '../../common/classes/response';
+import { Public } from '../../common/decorator/public.decorator';
+import { MongoExceptionFilter } from '../../common/filters/mongo-exception.filter';
 import { CreateMuscleTagDto } from './dto/create-muscle-tag.dto';
 import { UpdateMuscleTagDto } from './dto/update-muscle-tag.dto';
 import { MuscleTagService } from './muscle-tag.service';

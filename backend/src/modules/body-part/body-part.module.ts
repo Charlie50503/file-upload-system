@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { BodyPartController } from './body-part.controller';
 import { BodyPartService } from './body-part.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { BodyPart, BodyPartSchema } from 'src/schemas/body-part.schema';
+import { BodyPart, BodyPartSchema } from '../../schemas/body-part.schema';
 
 @Module({
   controllers: [BodyPartController],

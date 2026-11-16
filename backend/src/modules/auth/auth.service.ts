@@ -1,13 +1,13 @@
 import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { TokenService } from 'src/common/services/token.service';
-import { ErrorCode } from 'src/common/enum/error-code.enum';
-import { CustomException } from 'src/common/exception/custom-exception';
+import { TokenService } from '../../common/services/token.service';
+import { ErrorCode } from '../../common/enum/error-code.enum';
+import { CustomException } from '../../common/exception/custom-exception';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { SignUpResDto } from './dto/sign-up.res.dto';
 import { SignInResDto } from './dto/sign-in.res.dto';
-import { BcryptService } from 'src/common/services/bcrypt.service';
+import { BcryptService } from '../../common/services/bcrypt.service';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +23,7 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException();
     }
-    const isPasswordMatch = this.bcryptService.comparePassword(
+    const isPasswordMatch = await this.bcryptService.comparePassword(
       password,
       user.password,
     );
@@ -36,9 +36,11 @@ export class AuthService {
       );
     }
 
-    delete user.password;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _password, ...userWithoutPassword } = user.toJSON();
     return {
-      ...user.toJSON(),
+      ...userWithoutPassword,
+      _id: user.id,
       token: await this.tokenService.generatorToken(user.id, user.email),
     };
   }
@@ -62,6 +64,7 @@ export class AuthService {
 
     return {
       ...createdUser.toJSON(),
+      _id: createdUser.id,
       token: await this.tokenService.generatorToken(
         createdUser.id,
         createdUser.email,

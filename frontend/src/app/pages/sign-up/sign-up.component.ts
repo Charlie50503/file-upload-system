@@ -1,8 +1,8 @@
 import { AlertSnackbarService } from './../../commons/shared/alert-snackbar/alert-snackbar.service';
-import { CommonModule } from '@angular/common';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,23 +12,22 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthService } from 'src/app/api/v1/services';
-import { CustomExceptionDto } from 'src/app/api/v1/models';
-import { AlertDialogComponent } from 'src/app/commons/shared/alert-dialog/alert-dialog.component';
-import { ResponseError } from 'src/app/commons/interfaces/response-error';
-import { ErrorHandlerService } from 'src/app/core/services/error-handler.service';
+import { AuthService } from '../../api/v1/services';
+import { CustomExceptionDto } from '../../api/v1/models';
+import { AlertDialogComponent } from '../../commons/shared/alert-dialog/alert-dialog.component';
+import { ResponseError } from '../../commons/interfaces/response-error';
+import { ErrorHandlerService } from '../../core/services/error-handler.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
     MatButtonModule,
-    CommonModule,
   ],
 })
 export class SignUpComponent {
@@ -72,7 +71,7 @@ export class SignUpComponent {
           this.alertSnackbarService.onAttachRequestSucceeded();
           this.signUpFormGroup.reset();
         },
-        error: this.errorHandlerService.handleRequestError.bind(this),
+        error: this.errorHandlerService.handleRequestError.bind(this.errorHandlerService),
       });
   }
 }

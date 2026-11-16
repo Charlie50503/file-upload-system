@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('src/app/commons/pages/login/login.component').then(
+      import('./commons/pages/login/login.component').then(
         (c) => c.LoginComponent,
       ),
   },
@@ -14,7 +14,7 @@ const routes: Routes = [
     path: 'home',
     // canActivate: [authGuard],
     loadComponent: () =>
-      import('src/app/layouts/home/home.component').then(
+      import('./layouts/home/home.component').then(
         (c) => c.HomeComponent,
       ),
     children: [
@@ -22,13 +22,13 @@ const routes: Routes = [
         path: 'file-management',
         loadComponent: () =>
           import(
-            'src/app/pages/file-management/file-management.component'
+            './pages/file-management/file-management.component'
           ).then((c) => c.FileManagementComponent),
       },
       {
         path: 'sign-up',
         loadComponent: () =>
-          import('src/app/pages/sign-up/sign-up.component').then(
+          import('./pages/sign-up/sign-up.component').then(
             (c) => c.SignUpComponent,
           ),
       },

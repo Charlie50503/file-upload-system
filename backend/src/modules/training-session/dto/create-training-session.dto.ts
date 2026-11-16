@@ -3,15 +3,15 @@ import {
   IsBoolean,
   IsDate,
   IsInt,
+  IsMongoId,
   IsNotEmpty,
   Max,
   Min,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { IsObjectId } from 'nestjs-object-id';
 import { ObjectId } from 'mongodb';
 export class CreateTrainingSessionDto {
-  @IsObjectId({ message: '請輸入部位代號' })
+  @IsMongoId({ message: '請輸入部位代號' })
   @IsNotEmpty({ message: '請輸入部位代號' })
   @ApiProperty({
     description: '部位代號ID',
@@ -19,7 +19,7 @@ export class CreateTrainingSessionDto {
     type: 'string',
   })
   part_id: ObjectId;
-  @IsObjectId({ message: '請輸入訓練項目代號' })
+  @IsMongoId({ message: '請輸入訓練項目代號' })
   @IsNotEmpty({ message: '請輸入訓練項目代號' })
   @ApiProperty({
     description: '訓練項目ID',

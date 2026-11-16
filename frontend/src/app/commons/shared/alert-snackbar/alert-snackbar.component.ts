@@ -1,15 +1,15 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatSnackBar, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { IAlertType } from './alert-snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-alert-snackbar',
   templateUrl: './alert-snackbar.component.html',
   styleUrls: ['./alert-snackbar.component.scss'],
-  standalone: true,
-  imports: [MatSnackBarModule, MatIconModule, CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [MatSnackBarModule, MatIconModule],
 })
 export class AlertSnackbarComponent {
   constructor(

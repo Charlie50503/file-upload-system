@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
 import {
   TrainingSession,
   TrainingSessionDocument,
-} from 'src/schemas/training-session.schema';
+} from '../../schemas/training-session.schema';
 import { CreateTrainingSessionDto } from './dto/create-training-session.dto';
 import { UpdateTrainingSessionDto } from './dto/update-training-session.dto';
 import { BodyPartService } from '../body-part/body-part.service';

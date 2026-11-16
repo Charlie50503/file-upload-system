@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { DeleteResult } from 'mongodb';
 import { Model } from 'mongoose';
-import { MuscleTag, MuscleTagDocument } from 'src/schemas/muscle-tag.schema';
+import { MuscleTag, MuscleTagDocument } from '../../schemas/muscle-tag.schema';
 import { CreateMuscleTagDto } from './dto/create-muscle-tag.dto';
 import { UpdateMuscleTagDto } from './dto/update-muscle-tag.dto';
 

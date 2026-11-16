@@ -19,14 +19,14 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { ResponseDto } from 'src/common/dto/response.dto';
-import { MulterExceptionFilter } from 'src/common/filters/multer-exception.filter';
-import { FirebaseStorageService } from 'src/modules/file-management/firebase-storage.service';
+import { ResponseDto } from '../../common/dto/response.dto';
+import { MulterExceptionFilter } from '../../common/filters/multer-exception.filter';
+import { FirebaseStorageService } from './firebase-storage.service';
 import { IFile } from './dto/file.dto';
 import { ApiGetFilesResponse } from './swagger/file-management.decorator';
 import { Response } from 'express';
 import { UploadDto } from './dto/upload.dto';
-import { CustomExceptionFilter } from 'src/common/filters/custom-exception.filter';
+import { CustomExceptionFilter } from '../../common/filters/custom-exception.filter';
 
 @ApiTags('File Management') // swagger tag
 @ApiBearerAuth('JWT-auth')
@@ -93,7 +93,8 @@ export class FileManagementController {
 
       // 將文件流直接傳輸給客戶端
       return stream.pipe(res);
-    } catch (error) {
+    } catch (err) {
+      const error = err instanceof Error ? err : new Error(String(err));
       if (error.message === 'File not found') {
         // throw new NotFoundException(error.message);
         return res.status(404).send({

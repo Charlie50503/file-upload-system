@@ -4,7 +4,7 @@ import { TrainingSessionService } from './training-session.service';
 import {
   TrainingSession,
   TrainingSessionSchema,
-} from 'src/schemas/training-session.schema';
+} from '../../schemas/training-session.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BodyPartModule } from '../body-part/body-part.module';
 import { ExerciseModule } from '../exercise/exercise.module';

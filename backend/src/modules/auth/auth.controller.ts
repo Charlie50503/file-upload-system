@@ -1,10 +1,10 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { Public } from 'src/common/decorator/public.decorator';
+import { Public } from '../../common/decorator/public.decorator';
 import { ApiBadRequestResponse, ApiTags } from '@nestjs/swagger';
-import { ResponseDto } from 'src/common/dto/response.dto';
+import { ResponseDto } from '../../common/dto/response.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
-import { CustomExceptionDto } from 'src/common/dto/custom-exception.dto';
+import { CustomExceptionDto } from '../../common/dto/custom-exception.dto';
 import { ApiSignInResponse, ApiSignUpResponse } from './swagger/auth.decorator';
 import { SignUpResDto } from './dto/sign-up.res.dto';
 import { SignInDto } from './dto/sign-in.dto';

@@ -12,7 +12,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/auth.guard';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtSignOptions } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BodyPartModule } from './modules/body-part/body-part.module';
 import { ExerciseModule } from './modules/exercise/exercise.module';
@@ -30,7 +30,9 @@ import { TrainingSessionModule } from './modules/training-session/training-sessi
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: process.env.JWT_EXPIRE_DAY },
+      signOptions: {
+        expiresIn: process.env.JWT_EXPIRE_DAY as JwtSignOptions['expiresIn'],
+      },
     }),
     FileManagementModule,
     AuthModule,

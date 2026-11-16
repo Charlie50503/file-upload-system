@@ -17,6 +17,7 @@ export class ResponseDto<T> {
     description: '資料',
     example: 'data',
     type: 'object',
+    additionalProperties: true,
   })
   data?: T;
   @ApiProperty({
